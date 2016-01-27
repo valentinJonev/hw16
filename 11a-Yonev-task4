@@ -1,0 +1,39 @@
+function res = generate_chessboard()
+    black = 1;
+    pawn = 11;
+    knight = 2*pawn;
+    bishop = 3*pawn;
+    rook = 4*pawn;
+    queen = 5*pawn;
+    king = 6*pawn;
+    res = [];
+    for row = 1:8
+        for col = 1:8
+            if row == 1 || row == 8
+                if col == 1 || col == 8
+                    res(row,col) = rook;
+                elseif col == 2 || col == 7
+                    res(row,col) = knight;
+                elseif col == 3 || col == 6
+                    res(row,col) = bishop;
+                elseif col == 4 
+                    res(row,col) = queen;
+                elseif col == 5
+                    res(row,col) = king;
+                end
+            elseif row == 2 || row == 7
+                res(row,col) = pawn;
+            else
+                if mod(row,2) ~= 0 
+                    if mod(col,2) == 0
+                        res(row,col) = black;
+                    end
+                else
+                    if mod(col,2) ~= 0
+                        res(row,col) = black;
+                    end
+                end
+            end
+        end
+    end
+end
